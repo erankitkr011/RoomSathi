@@ -5,18 +5,22 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const navigate = useNavigate();
 
-  
   const handleSubmit = (e) => {
     e.preventDefault();
     //console.log({email, password,});
 
     axios.post('http://localhost:3300/login', {email, password,})
       .then((res) => {
-        console.log(res.data.user);
-        navigate('/');
+        const {user} = res.data;
+        localStorage.setItem('user', JSON.stringify(user));
+        if(user.role === 'owner'){
+          navigate('/owner-dashboard')
+        }
+        else if (user.role === 'renter') {
+          navigate('/renter-dashboard');
+        }
       })
       .catch((err) => {
         console.error(err);
