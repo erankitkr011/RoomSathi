@@ -11,7 +11,8 @@ const Signup = () => {
     e.preventDefault();
     console.log({ name, email, password, role });
 
-    axios.post('http://localhost:3300/signup', { name, email, password, role })
+    axios
+      .post("http://localhost:3300/signup", { name, email, password, role })
       .then((res) => {
         console.log(res.data);
         // Handle successful response
@@ -21,30 +22,57 @@ const Signup = () => {
         // Handle error response
       });
   };
-  
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <h2>Signup</h2>
         <label>
           Name:
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
         </label>
         <label>
           Email:
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </label>
         <label>
           Password:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
         </label>
         <div className="role-selection">
           <label>
-            <input type="radio" name="role" value="owner" required onChange={(e) => setRole(e.target.value)} />
+            <input
+              type="radio"
+              name="role"
+              value="owner"
+              required
+              onChange={(e) => setRole(e.target.value)}
+            />
             Owner
           </label>
           <label>
-            <input type="radio" name="role" value="renter" required onChange={(e) => setRole(e.target.value)} />
+            <input
+              type="radio"
+              name="role"
+              value="renter"
+              required
+              onChange={(e) => setRole(e.target.value)}
+            />
             Renter
           </label>
         </div>

@@ -3,12 +3,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem("user"));
 
-  const handleLogout = () =>{
-    localStorage.removeItem('user');
-    navigate('/');
-  }
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/");
+  };
   return (
     <div>
       <nav>
