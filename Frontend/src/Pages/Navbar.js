@@ -1,33 +1,29 @@
+// Navbar.js
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Logout from "../Components/Logout/Logout";
 const Navbar = () => {
-  const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    navigate("/");
-  };
   return (
     <div>
       <nav>
         <NavLink to="/">
           <p>Home</p>
         </NavLink>
-        {user ? (
-          <>
-            <button onClick={handleLogout}>Logout</button>
-          </>
-        ) : (
-          <>
-            <NavLink to="/login">
-              <p>Login</p>
-            </NavLink>
-            <NavLink to="/signup">
-              <p>SignUp</p>
-            </NavLink>
-          </>
+        {!isAuthenticated && (
+          <NavLink to="/login">
+            <p>Login</p>
+          </NavLink>
+        )}
+        {!isAuthenticated && (
+          <NavLink to="/signup">
+            <p>SignUp</p>
+          </NavLink>
+        )}
+        {isAuthenticated && (
+          <Logout /> 
         )}
       </nav>
     </div>

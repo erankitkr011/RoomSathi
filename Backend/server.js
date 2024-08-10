@@ -17,7 +17,7 @@ const connectDatabase = require('./config/database');
 connectDatabase();
 
 //! routes -----
-const user = require('./Routes/user');
+const user = require('./routes/user');
 const c = require('config');
 app.use(user);
 
