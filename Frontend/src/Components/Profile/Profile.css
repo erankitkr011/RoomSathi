@@ -1,4 +1,4 @@
-/* Profile.css */
+
 .profile_section {
   display: none;
   position: fixed;
@@ -8,11 +8,11 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
-  overflow: hidden; /* Prevent scrolling */
+  overflow: hidden; 
 }
 
 .profile_section.show {
-  display: block; /* Show when `showDropdown` is true */
+  display: block; 
 }
 
 .dropdown {
@@ -20,14 +20,14 @@
   top: 0;
   right: 0;
   width: 15%;
-  height: calc(100% - 20px); /* Full height minus padding */
+  height: calc(100% - 20px); 
   background-color: white;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Start from the top */
+  justify-content: flex-start;
 }
 
 .profile-content {
@@ -38,9 +38,9 @@
   flex-direction: column;
 }
 
-.profile-content h2 {
-    margin-top: 0;
-    color: #565050; /* Text color */
+.profile-content  h2 {
+    margin-top: 10px;
+    color: #565050;
     padding: 10px;
     cursor: pointer;
     font-size: 20px;
@@ -49,7 +49,6 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 15px;
     box-shadow: 0 4px 8px rgba(152, 144, 144, 0.2);
-
   }
   
 .profile-content h2:hover{
@@ -59,6 +58,36 @@
 
 .logout-button {
   text-align: center;
-  margin-top: auto; /* Push the button to the bottom */
-  margin-bottom: 20px; /* Add some space from the bottom */
+  margin-top: auto; 
+  margin-bottom: 20px;
+}
+
+
+@media (max-width: 768px) {
+  .dropdown {
+    width: 50%; 
+    height: calc(100% - 20px); 
+    right: 0; 
+  }
+  
+  .profile-content {
+    margin-top: 10px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .dropdown {
+    width: 80%; 
+    right: 10%; 
+    height: auto; 
+    top: 10%; 
+  }
+  
+  .profile-content {
+    margin-top: 5px; 
+  }
+  
+  .logout-button {
+    margin-bottom: 10px; 
+  }
 }

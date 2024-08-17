@@ -8,9 +8,9 @@ import Homepage from './Pages/Homepage';
 // import Logout from './Components/Logout/Logout';
 import OwnerDashboard from './Components/ownerDashboard/ownerDashboard';
 import UserDashboard from './Components/userDashboard/userDashboard';
+import AddHome from './Components/ownerDashboard/AddHome/AddHome';
 
 function App() {
-
   return (
     <div>
       <Navbar/>
@@ -21,6 +21,7 @@ function App() {
         {/* <Route path='/logout' element={<Logout/>} /> */}
         <Route path="/owner-dashboard" element={<OwnerDashboard/>} />
         <Route path='/user-dashboard' element={<UserDashboard/>} />
+        <Route path='/add-home' element={<AddHome/>} />
       </Routes>
     </div>
   );
