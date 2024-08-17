@@ -31,11 +31,16 @@ const Signup = () => {
           .then((loginRes) => {
             const { user, token } = loginRes.data;
             dispatch(loginSuccess({ user, token }));
-            if (user.role === "owner") {
-              navigate("/owner-dashboard");
-            } else if (user.role === "user") {
-              navigate("/user-dashboard");
-            }
+
+            setTimeout(() => {
+              if (user.role === "owner") {
+                console.log("Navigating to /owner-dashboard");
+                navigate("/owner-dashboard");
+              } else if (user.role === "renter") {
+                console.log("Navigating to /user-dashboard");
+                navigate("/user-dashboard");
+              }
+            }, 1000);
           })
           .catch((loginErr) => {
             console.log(loginErr);
