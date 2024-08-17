@@ -13,7 +13,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3300/login', {email, password,})
+    axios.post('/login', {email, password,})
       .then((res) => {
           const {user,token} = res.data;
           dispatch(loginSuccess({user,token}));

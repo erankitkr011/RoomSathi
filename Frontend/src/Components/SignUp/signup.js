@@ -20,14 +20,14 @@ const Signup = () => {
     console.log({ name, email, password, role });
 
     axios
-      .post("http://localhost:3300/signup", { name, email, password, role })
+      .post("/signup", { name, email, password, role })
       .then((res) => {
         console.log(res.data);
         // Handle successful response
         toast.success("Signup Successful!");
 
         axios
-          .post("http://localhost:3300/login", { email, password })
+          .post("/login", { email, password })
           .then((loginRes) => {
             const { user, token } = loginRes.data;
             dispatch(loginSuccess({ user, token }));

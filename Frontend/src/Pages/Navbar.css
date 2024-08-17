@@ -41,34 +41,30 @@ nav {
     font-weight: bold;
   }
   
-  .dropdown {
-    position: absolute;
-    top: 50px;
-    right: 0;
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1;
-    width: 150px;
-  }
-  
   .dropdown p {
     margin: 0;
     padding: 5px 0;
+    font-size: 40px;
+    text-align: center;
+    background-color: rgb(225, 237, 248);
+    font-weight: 900;
+    border-radius: 10px;
+    
   }
   
   .dropdown button {
-    margin-top: 10px;
     width: 100%;
-    padding: 5px 0;
-    background-color: #007bff;
+    padding: 10px 0;
+    background-color: #12263b;
     color: white;
     border: none;
     cursor: pointer;
     font-size: 14px;
+    border-radius: 20px;
+    font-weight: 900;
+    font-size: 20px;
   }
   
   .dropdown button:hover {
-    background-color: #0056b3;
+    background-color: #054181;
   }
