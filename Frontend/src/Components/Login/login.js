@@ -17,7 +17,13 @@ const Login = () => {
       .then((res) => {
           const {user,token} = res.data;
           dispatch(loginSuccess({user,token}));
-          navigate('/');
+          // navigate('/');
+          if(user.role === 'owner'){
+            navigate('/owner-dashboard');
+          }
+          else if(user.role === 'renter'){
+            navigate('/user-dashboard')
+          }
       })
       .catch((err) => {
         console.error(err);
