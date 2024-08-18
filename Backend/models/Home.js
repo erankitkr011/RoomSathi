@@ -14,7 +14,7 @@ const floorSchema = new Schema({
 });
 
 const homeSchema = new Schema({
-  owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  owner: { type: Schema.Types.ObjectId, ref: 'User'},
   name: { type: String, required: true },
   description: { type: String },
   address: {
@@ -30,7 +30,7 @@ const homeSchema = new Schema({
   },
   idProof: { type: String, required: true },
   floors: [floorSchema],
-  areaInAcres: { type: Number, required: true, min: 0 },
+  size: { type: Number, required: true, min: 0 },
   images: [{ type: String }],
   amenities: [{ type: String }],
   status: { type: String, enum: ['available', 'Booked'], default: 'available' },

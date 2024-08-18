@@ -4,6 +4,7 @@ const app = express();
 
 const cors = require('cors');
 app.use(cors());
+app.use(express.json());
 
 app.listen(3300,()=>{
     console.log("server started at local host 3300");
@@ -25,11 +26,12 @@ app.get('/',(req,res)=>{
     res.send("home pge")
 })
 
-const Home = require('./Models/Home');
-app.post('/homes', async (req, res) => {
+const Home = require('./models/Home');
+app.post('/add-home', async (req, res) => {
   try {
     console.log('Received data:', req.body); // Log received data
     const home = new Home(req.body);
+    console.log(home)
     await home.save();
     res.status(201).send(home);
   } catch (error) {

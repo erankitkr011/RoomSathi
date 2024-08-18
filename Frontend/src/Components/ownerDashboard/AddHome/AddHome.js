@@ -106,7 +106,7 @@ const AddHome = () => {
     };
 
     try {
-      const response = await fetch('/add-home', {
+      const response = await fetch('http://localhost:3300/add-home', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
