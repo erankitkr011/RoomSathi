@@ -1,43 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const AddHome = () => {
   const [address, setAddress] = useState({
-    street: '',
-    city: '',
-    state: '',
-    zipCode: '',
-    country: '',
+    street: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    country: "",
     geoLocation: {
-      lat: '',
-      lng: ''
-    }
+      lat: "",
+      lng: "",
+    },
   });
-  const [price, setPrice] = useState('');
-  const [description, setDescription] = useState('');
-  const [images, setImages] = useState(['']);
-  const [amenities, setAmenities] = useState(['']);
-  const [size, setSize] = useState('');
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [images, setImages] = useState([""]);
+  const [amenities, setAmenities] = useState([""]);
+  const [size, setSize] = useState("");
   const [floors, setFloors] = useState([{ floorNumber: 1, rooms: [{}] }]);
-  const [contactInfo, setContactInfo] = useState({ phone: '', email: '' });
-  const [status, setStatus] = useState('available');
-  const [name, setName] = useState('');
-  const [idProof, setIdProof] = useState('');
+  const [contactInfo, setContactInfo] = useState({ phone: "", email: "" });
+  const [status, setStatus] = useState("available");
+  const [name, setName] = useState("");
+  const [idProof, setIdProof] = useState("");
 
   const handleAddressChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'lat' || name === 'lng') {
-      setAddress({ ...address, geoLocation: { ...address.geoLocation, [name]: value } });
+    if (name === "lat" || name === "lng") {
+      setAddress({
+        ...address,
+        geoLocation: { ...address.geoLocation, [name]: value },
+      });
     } else {
       setAddress({ ...address, [name]: value });
     }
   };
 
-  const handlePriceChange = (e) => setPrice(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
   const handleSizeChange = (e) => setSize(e.target.value);
   const handleNameChange = (e) => setName(e.target.value);
   const handleIdProofChange = (e) => setIdProof(e.target.value);
-  const handleContactInfoChange = (e) => setContactInfo({ ...contactInfo, [e.target.name]: e.target.value });
+  const handleContactInfoChange = (e) =>
+    setContactInfo({ ...contactInfo, [e.target.name]: e.target.value });
   const handleStatusChange = (e) => setStatus(e.target.value);
 
   const handleImageChange = (index, value) => {
@@ -61,7 +64,10 @@ const AddHome = () => {
   const handleRoomChange = (floorIndex, roomIndex, e) => {
     const { name, value } = e.target;
     const newFloors = [...floors];
-    newFloors[floorIndex].rooms[roomIndex] = { ...newFloors[floorIndex].rooms[roomIndex], [name]: value };
+    newFloors[floorIndex].rooms[roomIndex] = {
+      ...newFloors[floorIndex].rooms[roomIndex],
+      [name]: value,
+    };
     setFloors(newFloors);
   };
 
@@ -82,15 +88,17 @@ const AddHome = () => {
 
   const removeRoom = (floorIndex, roomIndex) => {
     const newFloors = [...floors];
-    newFloors[floorIndex].rooms = newFloors[floorIndex].rooms.filter((_, i) => i !== roomIndex);
+    newFloors[floorIndex].rooms = newFloors[floorIndex].rooms.filter(
+      (_, i) => i !== roomIndex
+    );
     setFloors(newFloors);
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission, e.g., send data to backend
-    console.log({ address, price, description, images, amenities, size, floors, contactInfo, status, name, idProof });
-
+    // Retrieve user_id from local storage
+    const authState = JSON.parse(localStorage.getItem("authState"));
+    const userId = authState.user._id;
+    console.log(userId)
     const homeData = {
       address,
       price,
@@ -102,29 +110,29 @@ const AddHome = () => {
       contactInfo,
       status,
       name,
-      idProof
+      idProof,
+      userId, 
     };
 
     try {
-      const response = await fetch('http://localhost:3300/add-home', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3300/add-home", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(homeData)
+        body: JSON.stringify(homeData),
       });
 
       if (response.ok) {
         const result = await response.json();
-        console.log('Home added successfully:', result);
+        console.log("Home added successfully:", result);
       } else {
-        console.error('Failed to add home:', response.statusText);
+        console.error("Failed to add home:", response.statusText);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
-
   return (
     <form onSubmit={handleSubmit}>
       <h1>Add a New Home</h1>
@@ -134,35 +142,66 @@ const AddHome = () => {
       </div>
       <div>
         <label>Street:</label>
-        <input type="text" name="street" value={address.street} onChange={handleAddressChange} />
+        <input
+          type="text"
+          name="street"
+          value={address.street}
+          onChange={handleAddressChange}
+        />
       </div>
       <div>
         <label>City:</label>
-        <input type="text" name="city" value={address.city} onChange={handleAddressChange} />
+        <input
+          type="text"
+          name="city"
+          value={address.city}
+          onChange={handleAddressChange}
+        />
       </div>
       <div>
         <label>State:</label>
-        <input type="text" name="state" value={address.state} onChange={handleAddressChange} />
+        <input
+          type="text"
+          name="state"
+          value={address.state}
+          onChange={handleAddressChange}
+        />
       </div>
       <div>
         <label>ZIP:</label>
-        <input type="text" name="zipCode" value={address.zipCode} onChange={handleAddressChange} />
+        <input
+          type="text"
+          name="zipCode"
+          value={address.zipCode}
+          onChange={handleAddressChange}
+        />
       </div>
       <div>
         <label>Country:</label>
-        <input type="text" name="country" value={address.country} onChange={handleAddressChange} />
+        <input
+          type="text"
+          name="country"
+          value={address.country}
+          onChange={handleAddressChange}
+        />
       </div>
       <div>
         <label>Latitude:</label>
-        <input type="number" name="lat" value={address.geoLocation.lat} onChange={handleAddressChange} />
+        <input
+          type="number"
+          name="lat"
+          value={address.geoLocation.lat}
+          onChange={handleAddressChange}
+        />
       </div>
       <div>
         <label>Longitude:</label>
-        <input type="number" name="lng" value={address.geoLocation.lng} onChange={handleAddressChange} />
-      </div>
-      <div>
-        <label>Price:</label>
-        <input type="number" value={price} onChange={handlePriceChange} />
+        <input
+          type="number"
+          name="lng"
+          value={address.geoLocation.lng}
+          onChange={handleAddressChange}
+        />
       </div>
       <div>
         <label>Description:</label>
@@ -183,7 +222,9 @@ const AddHome = () => {
             placeholder={`Image URL ${index + 1}`}
           />
         ))}
-        <button type="button" onClick={() => setImages([...images, ''])}>Add Image</button>
+        <button type="button" onClick={() => setImages([...images, ""])}>
+          Add Image
+        </button>
       </div>
       <div>
         <label>Amenities:</label>
@@ -196,15 +237,27 @@ const AddHome = () => {
             placeholder={`Amenity ${index + 1}`}
           />
         ))}
-        <button type="button" onClick={() => setAmenities([...amenities, ''])}>Add Amenity</button>
+        <button type="button" onClick={() => setAmenities([...amenities, ""])}>
+          Add Amenity
+        </button>
       </div>
       <div>
         <label>Contact Phone:</label>
-        <input type="text" name="phone" value={contactInfo.phone} onChange={handleContactInfoChange} />
+        <input
+          type="text"
+          name="phone"
+          value={contactInfo.phone}
+          onChange={handleContactInfoChange}
+        />
       </div>
       <div>
         <label>Contact Email:</label>
-        <input type="email" name="email" value={contactInfo.email} onChange={handleContactInfoChange} />
+        <input
+          type="email"
+          name="email"
+          value={contactInfo.email}
+          onChange={handleContactInfoChange}
+        />
       </div>
       <div>
         <label>Status:</label>
@@ -237,7 +290,7 @@ const AddHome = () => {
                   <input
                     type="text"
                     name="name"
-                    value={room.name || ''}
+                    value={room.name || ""}
                     onChange={(e) => handleRoomChange(floorIndex, roomIndex, e)}
                     placeholder="Room Name"
                   />
@@ -247,39 +300,51 @@ const AddHome = () => {
                   <input
                     type="number"
                     name="size"
-                    value={room.size || ''}
+                    value={room.size || ""}
                     onChange={(e) => handleRoomChange(floorIndex, roomIndex, e)}
                     placeholder="Room Size"
                   />
                 </div>
                 <div>
                   <label>Room Type:</label>
-                  <input
-                    type="text"
-                    name="type"
-                    value={room.type || ''}
+                  <select
+                    value={room.type || ""}
                     onChange={(e) => handleRoomChange(floorIndex, roomIndex, e)}
-                    placeholder="Room Type"
-                  />
+                    name="type"
+                  >
+                    <option value="flat">Flat</option>
+                    <option value="room">Room</option>
+                  </select>
                 </div>
                 <div>
                   <label>Room Price:</label>
                   <input
                     type="number"
                     name="price"
-                    value={room.price || ''}
+                    value={room.price || ""}
                     onChange={(e) => handleRoomChange(floorIndex, roomIndex, e)}
                     placeholder="Room Price"
                   />
                 </div>
-                <button type="button" onClick={() => removeRoom(floorIndex, roomIndex)}>Remove Room</button>
+                <button
+                  type="button"
+                  onClick={() => removeRoom(floorIndex, roomIndex)}
+                >
+                  Remove Room
+                </button>
               </div>
             ))}
-            <button type="button" onClick={() => addRoom(floorIndex)}>Add Room</button>
-            <button type="button" onClick={() => removeFloor(floorIndex)}>Remove Floor</button>
+            <button type="button" onClick={() => addRoom(floorIndex)}>
+              Add Room
+            </button>
+            <button type="button" onClick={() => removeFloor(floorIndex)}>
+              Remove Floor
+            </button>
           </div>
         ))}
-        <button type="button" onClick={addFloor}>Add Floor</button>
+        <button type="button" onClick={addFloor}>
+          Add Floor
+        </button>
       </div>
       <button type="submit">Add Home</button>
     </form>

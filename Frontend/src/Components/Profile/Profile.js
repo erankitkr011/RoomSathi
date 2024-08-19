@@ -22,7 +22,7 @@ const Profile = ({ showDropdown, dropdownContent,}) => {
                  </NavLink>
                )
             }
-          <h2>Profile</h2>
+          <NavLink to='owner-dashboard'>My Account</NavLink>
           <h2>Profile</h2>
           <h2>Profile</h2>
           <h2>Profile</h2>
