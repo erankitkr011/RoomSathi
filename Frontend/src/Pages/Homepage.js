@@ -1,9 +1,11 @@
 import React, { useContext, useEffect } from 'react';
-import { AppContext } from '../context/AppContext'
+import { AppContext } from '../context/AppContext';
+import { useNavigate } from 'react-router-dom';
 import './Homepage.css';
 const Homepage = () => {
   const { fetchData } = useContext(AppContext);
   const { data } = useContext(AppContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
@@ -28,7 +30,7 @@ const Homepage = () => {
                   ))}
                 </div>
               ))}
-              <button className="button">View More</button>
+              <button className="button" onClick={() => navigate('/complete-description', { state: { home: item } })}>View More</button>
               <button className="button">Book</button>
             </div>
           </div>

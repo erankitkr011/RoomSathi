@@ -22,7 +22,7 @@ export default function AppContextProvider({children}){
         const url = `http://localhost:3300/ownerdata/${ownerId}`;
         const result = await fetch(url);
         const data = await result.json();
-        console.log(data);
+      //  console.log(data);
         setOwnerData(data);
     }
     

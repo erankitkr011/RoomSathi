@@ -9,6 +9,7 @@ import Homepage from './Pages/Homepage';
 import OwnerDashboard from './Components/ownerDashboard/OwnerDashboard';
 import UserDashboard from './Components/userDashboard/userDashboard';
 import AddHome from './Components/ownerDashboard/AddHome/AddHome';
+import CompDescription from './pageRender/CompDescription';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/owner-dashboard" element={<OwnerDashboard/>} />
         <Route path='/user-dashboard' element={<UserDashboard/>} />
         <Route path='/add-home' element={<AddHome/>} />
+        <Route path='/complete-description' element={<CompDescription/>}/>
       </Routes>
     </div>
   );
