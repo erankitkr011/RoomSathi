@@ -12,6 +12,11 @@ const OwnerDashboard = () => {
     fetchOwnerData();
   }, []);
 
+  const handleDelete = async (homeId) =>{
+    console.log(homeId);
+  }
+
+
   return (
     <div>
       {ownerData && ownerData.length > 0 ? (
@@ -23,8 +28,12 @@ const OwnerDashboard = () => {
               <p>{item.description}</p>
               {item.floors.map((floor, floorIndex) => (
                 <div key={floorIndex}>
+                <h3>Floor {floor.floorNumber}</h3>
                   {floor.rooms.map((room, roomIndex) => (
                     <div key={roomIndex}>
+                    <h4>Room {roomIndex + 1}</h4>
+                    <p>Type: {room.type === 'room' ? 'Room' : 'Flat'}</p>
+                    {/* <p>Status: {item.status}</p> */}
                       <p>{room.type === 'room' ? 'Room' : 'Flat'} Available</p>
                       <p>Price: {room.price}</p>
                     </div>
@@ -32,6 +41,7 @@ const OwnerDashboard = () => {
                 </div>
               ))}
               <button className="button" onClick={() => navigate('/complete-description', { state: { home: item } })}>View More</button>
+              <button className='button' onClick={() => handleDelete(item._id)}>Delete</button>
             </div>
           </div>
         ))

@@ -98,7 +98,7 @@ const AddHome = () => {
     // Retrieve user_id from local storage
     const authState = JSON.parse(localStorage.getItem("authState"));
     const userId = authState.user._id;
-    console.log(userId)
+    console.log(userId);
     const homeData = {
       address,
       price,
@@ -111,7 +111,7 @@ const AddHome = () => {
       status,
       name,
       idProof,
-      userId, 
+      userId,
     };
 
     try {
@@ -308,9 +308,9 @@ const AddHome = () => {
                 <div>
                   <label>Room Type:</label>
                   <select
+                    name="type"
                     value={room.type || ""}
                     onChange={(e) => handleRoomChange(floorIndex, roomIndex, e)}
-                    name="type"
                   >
                     <option value="flat">Flat</option>
                     <option value="room">Room</option>

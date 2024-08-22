@@ -18,7 +18,7 @@ const addressSchema = new Schema({
 const roomSchema = new Schema({
   name: { type: String, required: true },
   size: { type: Number, min: 0 },
-  type: { type: String, enum: ['room', 'flat'], default: 'room' },
+  type: { type: String, enum: ['room', 'flat'] },
   price: { type: Number, required: true, min: 0 },
 });
 
