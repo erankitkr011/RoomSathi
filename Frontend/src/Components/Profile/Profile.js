@@ -23,10 +23,10 @@ const Profile = ({ showDropdown, dropdownContent,}) => {
                )
             }
           <NavLink to='owner-dashboard'>My Account</NavLink>
+          {/* <h2>Profile</h2>
           <h2>Profile</h2>
           <h2>Profile</h2>
-          <h2>Profile</h2>
-          <h2>Profile</h2>
+          <h2>Profile</h2> */}
         
           </div>
           <div className='logout-button'>
