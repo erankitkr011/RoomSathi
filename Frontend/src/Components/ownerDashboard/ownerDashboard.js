@@ -13,7 +13,25 @@ const OwnerDashboard = () => {
   }, []);
 
   const handleDelete = async (homeId) =>{
-    console.log(homeId);
+    const url = `http://localhost:3300/delete/${homeId}`;
+    try {
+      const response = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to delete the home');
+      }
+  
+      const result = await response.json();
+      fetchOwnerData();
+      console.log('Home deleted successfully:', result);
+    } catch (error) {
+      console.error('Error deleting home:', error);
+    }
   }
 
 

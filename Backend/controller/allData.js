@@ -61,3 +61,4 @@ const ownerData = async (req,res)=>{
 }
 
 module.exports = {allData,addHome,ownerData}
+
